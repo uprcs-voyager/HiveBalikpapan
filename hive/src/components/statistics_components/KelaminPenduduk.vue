@@ -63,7 +63,7 @@ const chartKelamin = {
     labels: label,
     datasets: [
       {
-        label: 'Jenis Kelamin',
+        label: 'Jumlah',
         data: dataKelamin,
         backgroundColor: '#0c387d', // Warna biru navy
         borderRadius: 6,

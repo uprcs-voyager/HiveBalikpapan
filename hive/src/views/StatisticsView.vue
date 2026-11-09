@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import TahunWilayahSelector from '@/components/statistics_components/TahunWilayahSelector.vue'
-import StatisticsOverview from '@/components/statistics_components/StatisticsOverview.vue'
+import TahunWilayahSelector from '@/components/statistics_components/header/TahunWilayahSelector.vue'
+import StatisticsOverview from '@/components/statistics_components/header/StatisticsOverview.vue'
 import UsiaPenduduk from '@/components/statistics_components/UsiaPenduduk.vue'
 import KelaminPenduduk from '@/components/statistics_components/KelaminPenduduk.vue'
+import PendidikanPenduduk from '@/components/statistics_components/PendidikanPenduduk.vue'
+import AgamaPenduduk from '@/components/statistics_components/AgamaPenduduk.vue'
 </script>
 
 <template>
@@ -74,7 +76,15 @@ import KelaminPenduduk from '@/components/statistics_components/KelaminPenduduk.
       <section
         id="pendidikan_dan_agama"
         class="flex md:flex-row flex-col col-span-full gap-4 w-full"
-      ></section>
+      >
+        <div id="pendidikan" class="w-full flex flex-1">
+          <PendidikanPenduduk></PendidikanPenduduk>
+        </div>
+
+        <div id="agama" class="w-full flex flex-1">
+          <AgamaPenduduk></AgamaPenduduk>
+        </div>
+      </section>
     </main>
   </div>
 </template>
