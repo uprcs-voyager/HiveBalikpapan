@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import Navbar from './components/Layout/Navbar.vue';
-import Footer from './components/Layout/Footer.vue';
+import Navbar from './components/Layout/Navbar.vue'
+import Footer from './components/Layout/Footer.vue'
 </script>
 
 <template>
@@ -9,7 +9,7 @@ import Footer from './components/Layout/Footer.vue';
     <!-- Navbar -->
     <Navbar />
 
-  <!-- Berganti sesuai routes -->
+    <!-- Berganti sesuai routes -->
     <main class="grow">
       <RouterView />
     </main>
