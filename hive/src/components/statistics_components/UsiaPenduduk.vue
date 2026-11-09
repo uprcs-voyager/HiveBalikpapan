@@ -48,7 +48,10 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div id="container" class="flex flex-col p-4 b border-blue-400 rounded-lg border-2 gap-4 w-full">
+  <div
+    id="container"
+    class="flex flex-col p-4 b border-blue-400 rounded-lg border-2 gap-4 w-full bg-white"
+  >
     <!-- HEADER -->
     <div id="header" class="text-start">
       <h1 class="md:pb-2 text-black pb-4">Usia Penduduk Balikpapan (Kecamatan Balikpapan Timur)</h1>

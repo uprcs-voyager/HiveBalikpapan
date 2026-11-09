@@ -2,6 +2,7 @@
 import TahunWilayahSelector from '@/components/statistics_components/TahunWilayahSelector.vue'
 import StatisticsOverview from '@/components/statistics_components/StatisticsOverview.vue'
 import UsiaPenduduk from '@/components/statistics_components/UsiaPenduduk.vue'
+import KelaminPenduduk from '@/components/statistics_components/KelaminPenduduk.vue'
 </script>
 
 <template>
@@ -61,9 +62,19 @@ import UsiaPenduduk from '@/components/statistics_components/UsiaPenduduk.vue'
         <!-- DATA USIA PENDUDUK -->
 
         <!-- DATA JENIS KELAMIN -->
-        <div id="jenisKelamin" class="w-full flex-1"></div>
+        <div id="jenisKelamin" class="flex w-full flex-1">
+          <KelaminPenduduk></KelaminPenduduk>
+        </div>
         <!-- DATA JENIS KELAMIN -->
       </section>
+      <!-- DATA USIA DAN DATA JENIS KELAMIN  -->
+
+      <!-- PENDIDIKAN DAN AGAMA SECTION -->
+
+      <section
+        id="pendidikan_dan_agama"
+        class="flex md:flex-row flex-col col-span-full gap-4 w-full"
+      ></section>
     </main>
   </div>
 </template>
