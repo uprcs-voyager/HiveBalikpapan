@@ -1,33 +1,34 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import upperButton from '@/components/page_components/upperButton.vue';
 
 // year dropdown
-const Years = [2026, 2025, 2024]
-const SelectedYears = ref<number>(2026)
-const IsOpen = ref<boolean>(false)
+const Years = ['2026', '2025', '2024']
+// const SelectedYears = ref<number>(2026)
+// const IsOpen = ref<boolean>(false)
 
-const ToggleDropdownYear = () => {
-  IsOpen.value = !IsOpen.value
-}
-const SelectYear = (year: number) => {
-  SelectedYears.value = year
-  IsOpen.value = false
-}
+// const ToggleDropdownYear = () => {
+//   IsOpen.value = !IsOpen.value
+// }
+// const SelectYear = (year: number) => {
+//   SelectedYears.value = year
+//   IsOpen.value = false
+// }
 // year dropdown
 
 // year dropdown
 const Wilayah = ['Balikpapan Utara', 'Balikpapan Timur', 'Mars']
-const SelectedWilayah = ref<string>('Balikpapan Utara')
-const IsOpenWilayah = ref<boolean>(false)
+// const SelectedWilayah = ref<string>('Balikpapan Utara')
+// const IsOpenWilayah = ref<boolean>(false)
 
-const ToggleDropdownWilayah = () => {
-  IsOpenWilayah.value = !IsOpenWilayah.value
-}
-const SelectWilayah = (wilayah: string) => {
-  SelectedWilayah.value = wilayah
-  IsOpenWilayah.value = false
-}
-// year dropdown
+// const ToggleDropdownWilayah = () => {
+//   IsOpenWilayah.value = !IsOpenWilayah.value
+// }
+// const SelectWilayah = (wilayah: string) => {
+//   SelectedWilayah.value = wilayah
+//   IsOpenWilayah.value = false
+// }
+// // year dropdown
 </script>
 
 <template>
@@ -35,8 +36,27 @@ const SelectWilayah = (wilayah: string) => {
     id="container"
     class="flex md:flex-row md:gap-40 flex-col p-4 rounded-md border-2 border-blue-600 justify-center items-center gap-6"
   >
+
+  <upperButton 
+  title="Jenis Data Demografi"
+  :items="Years"
+  >
+
+  </upperButton>
+
+  <upperButton
+  title="Wilayah Data Demografi"
+  :items="Wilayah"
+  >
+
+  </upperButton>
+
+
+
+
+
     <!-- TAHUN DROPDOWN -->
-    <div id="TahunSelector" class="relative w-full items-center justify-center">
+    <!-- <div id="TahunSelector" class="relative w-full items-center justify-center">
       <h1 class="text-black text-md font-medium text-center">Tahun Data Demografi</h1>
       <button
         type="button"
@@ -44,10 +64,10 @@ const SelectWilayah = (wilayah: string) => {
         class="md:p-2 w-full items-center justify-center bg-blue-400 rounded-md p-1 text-white"
       >
         <span>{{ SelectedYears }}</span>
-      </button>
+      </button> -->
 
       <!-- Dropdown Data -->
-      <div
+      <!-- <div
         v-if="IsOpen"
         class="absolute top-full w-full mt-1 z-20 max-h-48 overflow-y-auto bg-white border border-gray-400 rouded-md"
       >
@@ -67,10 +87,10 @@ const SelectWilayah = (wilayah: string) => {
           </li>
         </ul>
       </div>
-    </div>
+    </div> -->
 
     <!-- WILAYAH DROPDOWN -->
-    <div id="TahunSelector" class="relative w-full items-center justify-center">
+    <!-- <div id="TahunSelector" class="relative w-full items-center justify-center">
       <h1 class="text-black text-md font-medium text-center">Wilayah Data Demografi</h1>
       <button
         type="button"
@@ -78,10 +98,10 @@ const SelectWilayah = (wilayah: string) => {
         class="md:p-2 w-full items-center justify-center bg-blue-400 rounded-md p-1 text-white"
       >
         <span>{{ SelectedWilayah }}</span>
-      </button>
+      </button> -->
 
       <!-- Dropdown Data -->
-      <div
+      <!-- <div
         v-if="IsOpenWilayah"
         class="absolute top-full w-full mt-1 z-20 max-h-48 overflow-y-auto bg-white border border-gray-400 rouded-md"
       >
@@ -101,6 +121,6 @@ const SelectWilayah = (wilayah: string) => {
           </li>
         </ul>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
