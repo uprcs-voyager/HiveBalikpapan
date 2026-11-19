@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed } from 'vue'
 import Chart from 'chart.js/auto'
+import pieChart from '../page_components/charts/pieChart.vue'
+import box_whiteBackground from '../page_components/box_whiteBackground.vue'
 
 // STATIC DATA
 const labelAgama = ['Islam', 'Kristen', 'Katolik', 'Buddha', 'Hindu', 'Khonghucu']
@@ -60,24 +62,22 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div
-    id="main_container"
-    class="flex flex-col p-4 b border-blue-400 rounded-lg border-2 gap-4 w-full bg-white"
+  <box_whiteBackground
+  title="Agama Penduduk Balikpapan (Kecamatan Balikpapan Timur)"
+  subtitle="Persentase Agama Penduduk Balikpapan"
+  :footer="`Kelompok Agama dengan jumlah pengikut paling besar adalah: ${kelompokTerbesar}`"
   >
-    <!-- HEADER -->
-    <div id="header" class="text-start">
-      <h1 class="md:pb-2 text-black pb-4">
-        Agama Penduduk Balikpapan (Kecamatan Balikpapan Timur)
-      </h1>
-      <p class="text-gray-600">Persentase Agama Penduduk Balikpapan</p>
-    </div>
-    <!-- HEADER -->
+
 
     <div id="agama_statistics" class="flex md:flex-row justify-center items-center">
       <!-- PIE CHART -->
-      <div id="pie_chart" class="flex lg:w-full lg:h-44 w-full h-30">
-        <canvas ref="chartCanvas"></canvas>
-      </div>
+      <pieChart
+      :agama="labelAgama"
+      :value="dataAgama"
+      :warna="warnaAgama"
+      >
+
+      </pieChart>
 
       <!-- COLORED LEGENDS -->
       <div id="legends_wrapper" class="flex lg:gap-y-2 flex-col w-full justify-center text-sm">
@@ -102,10 +102,6 @@ onUnmounted(() => {
       </div>
     </div>
 
-    <!-- FOOTER -->
-    <div class="text-md text-black">
-      <span class="">Kelompok Agama Terbesar = {{ kelompokTerbesar }}</span>
-    </div>
-    <!-- FOOTER -->
-  </div>
+
+  </box_whiteBackground>
 </template>

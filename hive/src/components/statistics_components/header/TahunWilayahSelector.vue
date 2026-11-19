@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import upperButton from '@/components/page_components/upperButton.vue';
+import dropdownButton from '@/components/page_components/buttons/dropdownButton.vue';
 
 // year dropdown
 const Years = ['2026', '2025', '2024']
@@ -37,19 +37,19 @@ const Wilayah = ['Balikpapan Utara', 'Balikpapan Timur', 'Mars']
     class="flex md:flex-row md:gap-40 flex-col p-4 rounded-md border-2 border-blue-600 justify-center items-center gap-6"
   >
 
-  <upperButton 
+  <dropdownButton 
   title="Jenis Data Demografi"
   :items="Years"
   >
 
-  </upperButton>
+  </dropdownButton>
 
-  <upperButton
+  <dropdownButton
   title="Wilayah Data Demografi"
   :items="Wilayah"
   >
 
-  </upperButton>
+  </dropdownButton>
 
 
 

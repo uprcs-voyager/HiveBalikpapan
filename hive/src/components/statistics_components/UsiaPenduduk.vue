@@ -2,7 +2,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import Chart from 'chart.js/auto'
 import box_whiteBackground from '../page_components/box_whiteBackground.vue'
-import barChart_vertical from '../page_components/chart/barChart_vertical.vue'
+import barChart_vertical from '../page_components/charts/barChart_vertical.vue'
 
 // Static Data
 const Label = ['0-14 Tahun', '15-29 Tahun', '30-44 Tahun', '45-60 Tahun', '60+ Tahun']

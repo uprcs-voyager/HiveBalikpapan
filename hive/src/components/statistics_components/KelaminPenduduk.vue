@@ -2,6 +2,9 @@
 import { ref, onMounted, onUnmounted, computed } from 'vue'
 import Chart from 'chart.js/auto'
 import { useChart } from '@/composable/use_chart'
+import donutChart from '../page_components/charts/donutChart.vue'
+import barChart_vertical from '../page_components/charts/barChart_vertical.vue'
+import Box_whiteBackground from '../page_components/box_whiteBackground.vue'
 
 // STATICS DATA
 const label = ['Laki-Laki', 'Perempuan']
@@ -15,85 +18,81 @@ const persentaseWanita = computed(() => Math.round((dataKelamin[1] / totalPendud
 const rasioKelamin = computed(() => `${persentasePria.value}:${persentaseWanita.value}`)
 
 // CANVAS DAN INSTANCE
-const chartCanvas = ref<HTMLCanvasElement | null>(null)
-let chartInstance: Chart | null = null
-onMounted(() => {
-  if (!chartCanvas.value) return
+// const chartCanvas = ref<HTMLCanvasElement | null>(null)
+// let chartInstance: Chart | null = null
+// onMounted(() => {
+//   if (!chartCanvas.value) return
 
-  chartInstance = new Chart(chartCanvas.value, {
-    type: 'doughnut',
-    data: {
-      labels: label,
-      datasets: [
-        {
-          data: dataKelamin,
-          backgroundColor: ['#4f46e5', '#d946ef'], // Warna Nila (Pria) & Magenta (Perempuan)
-          borderWidth: 2,
-          borderColor: '#ffffff',
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      cutout: '65%',
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          callbacks: {
-            label: (context) => ` ${context.label}: ${context.parsed.toLocaleString('id-ID')} jiwa`,
-          },
-        },
-      },
-    },
-  })
-})
+//   chartInstance = new Chart(chartCanvas.value, {
+//     type: 'doughnut',
+//     data: {
+//       labels: label,
+//       datasets: [
+//         {
+//           data: dataKelamin,
+//           backgroundColor: ['#4f46e5', '#d946ef'], // Warna Nila (Pria) & Magenta (Perempuan)
+//           borderWidth: 2,
+//           borderColor: '#ffffff',
+//         },
+//       ],
+//     },
+//     options: {
+//       responsive: true,
+//       maintainAspectRatio: false,
+//       cutout: '65%',
+//       plugins: {
+//         legend: { display: false },
+//         tooltip: {
+//           callbacks: {
+//             label: (context) => ` ${context.label}: ${context.parsed.toLocaleString('id-ID')} jiwa`,
+//           },
+//         },
+//       },
+//     },
+//   })
+// })
 
-onUnmounted(() => {
-  if (chartInstance) {
-    chartInstance.destroy()
-  }
-})
+// onUnmounted(() => {
+//   if (chartInstance) {
+//     chartInstance.destroy()
+//   }
+// })
 
-// ================== BAR CHART
-const barCanvas = ref<HTMLCanvasElement | null>(null)
-const chartKelamin = {
-  type: 'bar',
-  data: {
-    labels: label,
-    datasets: [
-      {
-        label: 'Jumlah',
-        data: dataKelamin,
-        backgroundColor: '#0c387d', // Warna biru navy
-        borderRadius: 6,
-      },
-    ],
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: { display: false },
-    },
-  },
-}
-useChart(barCanvas, chartKelamin)
+// // ================== BAR CHART
+// const barCanvas = ref<HTMLCanvasElement | null>(null)
+// const chartKelamin = {
+//   type: 'bar',
+//   data: {
+//     labels: label,
+//     datasets: [
+//       {
+//         label: 'Jumlah',
+//         data: dataKelamin,
+//         backgroundColor: '#0c387d', // Warna biru navy
+//         borderRadius: 6,
+//       },
+//     ],
+//   },
+//   options: {
+//     responsive: true,
+//     maintainAspectRatio: false,
+//     plugins: {
+//       legend: { display: false },
+//     },
+//   },
+// }
+
 </script>
 
 <template>
-  <div
-    id="container"
-    class="flex lg:gap-4 flex-col p-4 border-blue-400 rounded-lg border-2 gap-4 w-full h-full bg-white"
+  <Box_whiteBackground
+  title="Jenis Kelamin Penduduk Balikpapan (Kecamatan Balikpapan Timur)"
+  subtitle="Persentase dan Jumlah Penduduk pria dan perempuan"
+  :footer="`Rasio Pendudul Pria dan Perempuan: ${rasioKelamin}`"
   >
-    <!-- HEADER -->
-    <div id="header" class="text-start">
-      <h1 class="md:pb-2 text-black pb-4">
-        Jenis Kelamin Penduduk Balikpapan (Kecamatan Balikpapan Timur)
-      </h1>
-      <p class="text-gray-600">Persentase dan Jumlah Penduduk pria dan perempuan di Balikpapan</p>
-    </div>
-    <!-- HEADER -->
+
+
+  
 
     <!-- STATISTIK KELAMIN -->
     <div
@@ -101,12 +100,21 @@ useChart(barCanvas, chartKelamin)
       class="flex md:gap-8 lg:pr-8 lg:gap-8 flex-row items-center gap-4 py-4 h-full"
     >
       <!-- DONUT CHART -->
-      <div
+      <donutChart 
+      :kelamin = "label"
+      :values="dataKelamin"
+      >
+      </donutChart>
+
+
+
+
+      <!-- <div
         id="donut_chart"
         class="relative md:w-36 md:h-36 lg:pl-6 lg:w-40 lg:h-40 w-24 h-24 shrink-0"
       >
         <canvas ref="chartCanvas"></canvas>
-      </div>
+      </div> -->
       <!-- DONUT CHART -->
 
       <!-- DATA STATISTIK JENIS KELAMIN PRIA DAN WANITA -->
@@ -156,14 +164,25 @@ useChart(barCanvas, chartKelamin)
       </div>
       <!-- DATA STATISTIK JENIS KELAMIN PRIA DAN WANITA -->
 
-      <div id="barchart" class="hidden md:block relative w-50 h-50 mt-4">
-        <canvas ref="barCanvas"></canvas>
+      <div class="hidden md:block w-50">
+      <barChart_vertical
+      :labels="label"
+      :values="dataKelamin"
+      class="hidden md:block" >
+
+      </barChart_vertical>
+
       </div>
+      
+
+      <!-- <div id="barchart" class="hidden md:block relative w-50 h-50 mt-4">
+        <canvas ref="barCanvas"></canvas>
+      </div> -->
     </div>
 
-    <!-- FOOTER -->
+    <!-- FOOTER
     <div id="footer" class="flex w-full">
       <h1 id="rasio" class="text-black">Rasio Penduduk Pria dan Perempuan : {{ rasioKelamin }}</h1>
-    </div>
-  </div>
+    </div> -->
+    </Box_whiteBackground>
 </template>

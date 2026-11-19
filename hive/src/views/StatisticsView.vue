@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import TahunWilayahSelector from '@/components/statistics_components/header/TahunWilayahSelector.vue'
-import StatisticsOverview from '@/components/statistics_components/header/StatisticsOverview.vue'
+// import StatisticsOverview from '@/components/statistics_components/header/StatisticsOverview.vue'
+import statisticOverviewBox from '@/components/page_components/statisticOverviewBox.vue'
 import UsiaPenduduk from '@/components/statistics_components/UsiaPenduduk.vue'
 import KelaminPenduduk from '@/components/statistics_components/KelaminPenduduk.vue'
 import PendidikanPenduduk from '@/components/statistics_components/PendidikanPenduduk.vue'
@@ -33,16 +34,31 @@ import AgamaPenduduk from '@/components/statistics_components/AgamaPenduduk.vue'
       <!-- TAHUN WILAYAH SELECTOR -->
 
       <!-- STATISTICS OVERVIEW -->
-      <section id="StatisticsOverview" class="">
-        <StatisticsOverview> </StatisticsOverview>
+      <section id="StatisticsOverview1" class="">
+        <statisticOverviewBox
+        title="Jumlah total Penduduk",
+        :value= 13821 
+        unit="Jiwa"
+        >
+        </statisticOverviewBox>
       </section>
 
-      <section id="StatisticsOverview" class="">
-        <StatisticsOverview> </StatisticsOverview>
+      <section id="StatisticsOverview2" class="">
+       <statisticOverviewBox
+        title="Kepadatan Penduduk/KM2",
+        :value= 13821 
+        unit="Jiwa"
+        >
+        </statisticOverviewBox>
       </section>
 
-      <section id="StatisticsOverview" class="">
-        <StatisticsOverview> </StatisticsOverview>
+      <section id="StatisticsOverview3" class="">
+        <statisticOverviewBox
+        title="Luas Area (KM2)",
+        :value= 138212 
+        unit="KM"
+        >
+        </statisticOverviewBox>
       </section>
       <!-- STATISTICS OVERVIEW -->
 

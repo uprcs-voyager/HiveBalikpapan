@@ -2,12 +2,12 @@
 import  {ref} from 'vue'
 
 
-export interface dropDownItem {
-    current : string
-}
+// export interface dropDownItem {
+//     current : string
+// }
 
 const props = withDefaults (defineProps<{
-    title : string, 
+    title ? : string, 
     items : string[]
     dropdownColor ? : string
     itemColor ? : string

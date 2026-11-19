@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import box_whiteBackground from '../page_components/box_whiteBackground.vue'
-import barChart_horizontal, { type horizontalBarItem } from '../page_components/chart/barChart_horizontal.vue'
+import barChart_horizontal from '../page_components/charts/barChart_horizontal.vue'
+
+type horizontalBarItem = {
+  label: string
+  value: number
+}
 
 // STATICS DATA
 const pendidikanData : horizontalBarItem[] = [
