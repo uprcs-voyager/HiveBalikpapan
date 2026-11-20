@@ -6,7 +6,7 @@ import { ref } from 'vue'
 const links = [
   { name: 'Home', link: '#' },
   { name: 'Statistics', link: '/statistics' },
-  { name: 'Comparison', link: '#' },
+  { name: 'Comparison', link: '/comparison' },
   { name: 'Dataset', link: '#' },
   { name: 'About', link: '#' },
 ]

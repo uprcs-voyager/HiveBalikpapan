@@ -6,6 +6,7 @@ import UsiaPenduduk from '@/components/statistics_components/UsiaPenduduk.vue'
 import KelaminPenduduk from '@/components/statistics_components/KelaminPenduduk.vue'
 import PendidikanPenduduk from '@/components/statistics_components/PendidikanPenduduk.vue'
 import AgamaPenduduk from '@/components/statistics_components/AgamaPenduduk.vue'
+import pendudukKecamatan from '@/components/statistics_components/pendudukKecamatan.vue'
 </script>
 
 <template>
@@ -101,6 +102,16 @@ import AgamaPenduduk from '@/components/statistics_components/AgamaPenduduk.vue'
           <AgamaPenduduk></AgamaPenduduk>
         </div>
       </section>
+
+      <section id="penduduk_balikpapan_tiap_kecamatan"
+      class="flex md:flex-row flex-col col-span-full w-full"
+      >
+      <pendudukKecamatan>
+        
+      </pendudukKecamatan>
+      </section>
+
+
     </main>
   </div>
 </template>

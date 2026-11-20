@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from 'vue';
+
 // import {ref, onMounted, onUnmounted, watch} from 'vue'
 // import Chart from 'chart.js/auto'
 
@@ -8,6 +10,7 @@ export interface horizontalBarItem {
     label : string 
     value : number // nilai buat ngitung panjang batang
     displayText ? : string // data opsional : misal 67 jiwa
+
 }
 
 //Menerima Data dinamis
@@ -16,18 +19,36 @@ const props = withDefaults(
         items : horizontalBarItem[]
         maxValue? : number
         barColor ? : string
+        unit ? : string
     }>(),
     {
-        maxValue : 100, // maks value default 100
-        barColor : '#0c387d' // warna biru navy
+        // maxValue : 100, // maks value default 100
+        barColor : '#0c387d', // warna biru navy
+        unit: '%'
     }
 )
 
+const calculatedMaxValue = computed(()=> {
+    if(props.maxValue !== undefined && props.maxValue > 0) {
+        return props.maxValue
+    }
+    const values = props.items.map(item => item.value)
+    return Math.max(...values, 1) // kasih satu supaya nggak error pembagian nol
+})
 // ngitung persentase lebar batang (0-100)
 const widthPercentage = (value : number): number => {
-    if(props.maxValue <= 0) return 0
-    const percentage = (value / props.maxValue) * 100 
+    if(calculatedMaxValue.value <= 0) return 0
+    const percentage = (value / calculatedMaxValue.value) * 100 
     return Math.min(100, Math.max(0, percentage))
+}
+
+
+// 2. Fungsi pembantu untuk memformat angka + satuan secara otomatis
+const formatDisplay = (item: horizontalBarItem): string => {
+  if (item.displayText) return item.displayText
+
+  const formattedNumber = item.value.toLocaleString('id-ID') // Contoh: 29313 -> "29.313"
+  return props.unit === '%' ? `${formattedNumber}%` : `${formattedNumber} ${props.unit}`
 }
 </script>
 
@@ -56,7 +77,7 @@ const widthPercentage = (value : number): number => {
 
             <!-- nilai numerik yang disebelah kanan -->
             <span class="text-sm md:text-md md:w-10 font-medium text-black text-right">
-            {{ item.displayText ?? `${item.value}%` }}
+            {{ formatDisplay(item)}}
             </span>
         </div>
     </div>

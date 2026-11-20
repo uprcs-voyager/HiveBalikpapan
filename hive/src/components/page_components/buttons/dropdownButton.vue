@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import  {ref} from 'vue'
+import  {ref, computed} from 'vue'
 
 
 // export interface dropDownItem {
@@ -9,6 +9,7 @@ import  {ref} from 'vue'
 const props = withDefaults (defineProps<{
     title ? : string, 
     items : string[]
+    modelValue?: string // Menerima nilai terpilih dari luar (v-model)
     dropdownColor ? : string
     itemColor ? : string
 }>(), {
@@ -16,15 +17,24 @@ const props = withDefaults (defineProps<{
     itemColor : '#ffffff'
 }
 )
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: string): void
+}>()
+
+// state lokal buat fallbck kalo misalkan komponen tidak diberi v-model
+const localSelectedItem = ref<string>('Silahkan Pilih Disini')
+const IsOpen = ref<boolean>(false)
+
+const currentLabel = computed(() => props.modelValue ?? localSelectedItem.value)
 
 // dropdown
-const SelectedItem = ref<string>('Silahkan Pilih Disini')
-const IsOpen = ref<boolean>(false)
+
 const toggleDropdownButton = () => {
     IsOpen.value = !IsOpen.value
 }
 const selectItem = (item : string) => {
-    SelectedItem.value = item
+    localSelectedItem.value = item
+    emit('update:modelValue', item) // Kirim nilai terpilih ke komponen induk
     IsOpen.value = false
 }
 // dropdown
@@ -40,7 +50,7 @@ const selectItem = (item : string) => {
         @click="toggleDropdownButton"
         class="md:p-2 w-full items-center justify-center bg-blue-400 rounded-md p-1 text-white"
       >
-        <span>{{ SelectedItem }}</span>
+        <span>{{ currentLabel }}</span>
       </button>
 
       <!-- Dropdown Data -->
@@ -55,7 +65,7 @@ const selectItem = (item : string) => {
             @click="selectItem(item)"
             class="flex  justify-between items-center px-2 py-2 text-md cursor-pointer transition-colors"
             :class="[
-              item === SelectedItem
+              item === currentLabel
                 ? 'bg-blue-100 text-blue-600 font-semibold'
                 : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600',
             ]"
